@@ -57,9 +57,9 @@ namespace QuitoText_1._0.Controllers
 
             //HttpFileCollectionBase httpFileCollectionBase
 
-            WebImage image = new WebImage(httpPostedFileBase.InputStream);
+            //WebImage image = new WebImage(httpPostedFileBase.InputStream);
 
-            pRODUCTO.PRO_IMAGEN = image.GetBytes();
+            //pRODUCTO.PRO_IMAGEN = image.GetBytes();
 
             if (ModelState.IsValid)
             {
