@@ -1,0 +1,104 @@
+﻿@model QuitoText_1._0.Datos.PRODUCTO
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>PRODUCTO</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PRO_NOMBRE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PRO_NOMBRE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PRO_DESCRIPCION)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PRO_DESCRIPCION)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PRO_PRECIO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PRO_PRECIO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PRO_STOCK)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PRO_STOCK)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PRO_IMAGEN)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PRO_IMAGEN)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PRO_IMAGEN2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PRO_IMAGEN2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PRO_IMAGEN3)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PRO_IMAGEN3)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PRO_IMAGEN4)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PRO_IMAGEN4)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PRO_IMAGEN5)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PRO_IMAGEN5)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CATEGORIA.CATE_NOMBRE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CATEGORIA.CATE_NOMBRE)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

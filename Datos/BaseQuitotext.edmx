@@ -1,0 +1,250 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="QuitoTexModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CATEGORIA">
+          <Key>
+            <PropertyRef Name="CATE_ID" />
+          </Key>
+          <Property Name="CATE_ID" Type="int" Nullable="false" />
+          <Property Name="CATE_NOMBRE" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="COMPRA">
+          <Key>
+            <PropertyRef Name="US_ID" />
+            <PropertyRef Name="PRO_ID" />
+          </Key>
+          <Property Name="US_ID" Type="int" Nullable="false" />
+          <Property Name="PRO_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PRODUCTO">
+          <Key>
+            <PropertyRef Name="PRO_ID" />
+          </Key>
+          <Property Name="PRO_ID" Type="int" Nullable="false" />
+          <Property Name="CATE_ID" Type="int" Nullable="false" />
+          <Property Name="PRO_NOMBRE" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="PRO_DESCRIPCION" Type="varchar" MaxLength="70" Nullable="false" />
+          <Property Name="PRO_PRECIO" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="PRO_STOCK" Type="int" Nullable="false" />
+          <Property Name="PRO_IMAGEN" Type="image" />
+          <Property Name="PRO_IMAGEN2" Type="image" />
+          <Property Name="PRO_IMAGEN3" Type="image" />
+          <Property Name="PRO_IMAGEN4" Type="image" />
+          <Property Name="PRO_IMAGEN5" Type="image" />
+        </EntityType>
+        <EntityType Name="USUARIO">
+          <Key>
+            <PropertyRef Name="US_ID" />
+          </Key>
+          <Property Name="US_ID" Type="int" Nullable="false" />
+          <Property Name="US_NOMBRE" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="US_DIRECCION" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="US_CEDULA" Type="varchar" MaxLength="14" Nullable="false" />
+          <Property Name="US_TELEFONO" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="US_TIPO" Type="varchar" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_COMPRA_COMPRA_USUARIO">
+          <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="1" />
+          <End Role="COMPRA" Type="Self.COMPRA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USUARIO">
+              <PropertyRef Name="US_ID" />
+            </Principal>
+            <Dependent Role="COMPRA">
+              <PropertyRef Name="US_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_COMPRA_COMPRA2_PRODUCTO">
+          <End Role="PRODUCTO" Type="Self.PRODUCTO" Multiplicity="1" />
+          <End Role="COMPRA" Type="Self.COMPRA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCTO">
+              <PropertyRef Name="PRO_ID" />
+            </Principal>
+            <Dependent Role="COMPRA">
+              <PropertyRef Name="PRO_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PRODUCTO_PRODUCTO__CATEGORI">
+          <End Role="CATEGORIA" Type="Self.CATEGORIA" Multiplicity="1" />
+          <End Role="PRODUCTO" Type="Self.PRODUCTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CATEGORIA">
+              <PropertyRef Name="CATE_ID" />
+            </Principal>
+            <Dependent Role="PRODUCTO">
+              <PropertyRef Name="CATE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="QuitoTexModelStoreContainer">
+          <EntitySet Name="CATEGORIA" EntityType="Self.CATEGORIA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="COMPRA" EntityType="Self.COMPRA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PRODUCTO" EntityType="Self.PRODUCTO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="USUARIO" EntityType="Self.USUARIO" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_COMPRA_COMPRA_USUARIO" Association="Self.FK_COMPRA_COMPRA_USUARIO">
+            <End Role="USUARIO" EntitySet="USUARIO" />
+            <End Role="COMPRA" EntitySet="COMPRA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_COMPRA_COMPRA2_PRODUCTO" Association="Self.FK_COMPRA_COMPRA2_PRODUCTO">
+            <End Role="PRODUCTO" EntitySet="PRODUCTO" />
+            <End Role="COMPRA" EntitySet="COMPRA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRODUCTO_PRODUCTO__CATEGORI" Association="Self.FK_PRODUCTO_PRODUCTO__CATEGORI">
+            <End Role="CATEGORIA" EntitySet="CATEGORIA" />
+            <End Role="PRODUCTO" EntitySet="PRODUCTO" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="QuitoTexModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CATEGORIA">
+          <Key>
+            <PropertyRef Name="CATE_ID" />
+          </Key>
+          <Property Name="CATE_ID" Type="Int32" Nullable="false" />
+          <Property Name="CATE_NOMBRE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="PRODUCTO" Relationship="Self.FK_PRODUCTO_PRODUCTO__CATEGORI" FromRole="CATEGORIA" ToRole="PRODUCTO" />
+        </EntityType>
+        <EntityType Name="PRODUCTO">
+          <Key>
+            <PropertyRef Name="PRO_ID" />
+          </Key>
+          <Property Name="PRO_ID" Type="Int32" Nullable="false" />
+          <Property Name="CATE_ID" Type="Int32" Nullable="false" />
+          <Property Name="PRO_NOMBRE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PRO_DESCRIPCION" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PRO_PRECIO" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="PRO_STOCK" Type="Int32" Nullable="false" />
+          <Property Name="PRO_IMAGEN" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="PRO_IMAGEN2" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="PRO_IMAGEN3" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="PRO_IMAGEN4" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="PRO_IMAGEN5" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="CATEGORIA" Relationship="Self.FK_PRODUCTO_PRODUCTO__CATEGORI" FromRole="PRODUCTO" ToRole="CATEGORIA" />
+          <NavigationProperty Name="USUARIO" Relationship="Self.COMPRA" FromRole="PRODUCTO" ToRole="USUARIO" />
+        </EntityType>
+        <EntityType Name="USUARIO">
+          <Key>
+            <PropertyRef Name="US_ID" />
+          </Key>
+          <Property Name="US_ID" Type="Int32" Nullable="false" />
+          <Property Name="US_NOMBRE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="US_DIRECCION" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="US_CEDULA" Type="String" MaxLength="14" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="US_TELEFONO" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="US_TIPO" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="PRODUCTO" Relationship="Self.COMPRA" FromRole="USUARIO" ToRole="PRODUCTO" />
+        </EntityType>
+        <Association Name="FK_PRODUCTO_PRODUCTO__CATEGORI">
+          <End Role="CATEGORIA" Type="Self.CATEGORIA" Multiplicity="1" />
+          <End Role="PRODUCTO" Type="Self.PRODUCTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CATEGORIA">
+              <PropertyRef Name="CATE_ID" />
+            </Principal>
+            <Dependent Role="PRODUCTO">
+              <PropertyRef Name="CATE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="COMPRA">
+          <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="*" />
+          <End Role="PRODUCTO" Type="Self.PRODUCTO" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="QuitoTexEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CATEGORIA" EntityType="Self.CATEGORIA" />
+          <EntitySet Name="PRODUCTO" EntityType="Self.PRODUCTO" />
+          <EntitySet Name="USUARIO" EntityType="Self.USUARIO" />
+          <AssociationSet Name="FK_PRODUCTO_PRODUCTO__CATEGORI" Association="Self.FK_PRODUCTO_PRODUCTO__CATEGORI">
+            <End Role="CATEGORIA" EntitySet="CATEGORIA" />
+            <End Role="PRODUCTO" EntitySet="PRODUCTO" />
+          </AssociationSet>
+          <AssociationSet Name="COMPRA" Association="Self.COMPRA">
+            <End Role="USUARIO" EntitySet="USUARIO" />
+            <End Role="PRODUCTO" EntitySet="PRODUCTO" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="QuitoTexModelStoreContainer" CdmEntityContainer="QuitoTexEntities">
+          <EntitySetMapping Name="CATEGORIA">
+            <EntityTypeMapping TypeName="QuitoTexModel.CATEGORIA">
+              <MappingFragment StoreEntitySet="CATEGORIA">
+                <ScalarProperty Name="CATE_ID" ColumnName="CATE_ID" />
+                <ScalarProperty Name="CATE_NOMBRE" ColumnName="CATE_NOMBRE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PRODUCTO">
+            <EntityTypeMapping TypeName="QuitoTexModel.PRODUCTO">
+              <MappingFragment StoreEntitySet="PRODUCTO">
+                <ScalarProperty Name="PRO_ID" ColumnName="PRO_ID" />
+                <ScalarProperty Name="CATE_ID" ColumnName="CATE_ID" />
+                <ScalarProperty Name="PRO_NOMBRE" ColumnName="PRO_NOMBRE" />
+                <ScalarProperty Name="PRO_DESCRIPCION" ColumnName="PRO_DESCRIPCION" />
+                <ScalarProperty Name="PRO_PRECIO" ColumnName="PRO_PRECIO" />
+                <ScalarProperty Name="PRO_STOCK" ColumnName="PRO_STOCK" />
+                <ScalarProperty Name="PRO_IMAGEN" ColumnName="PRO_IMAGEN" />
+                <ScalarProperty Name="PRO_IMAGEN2" ColumnName="PRO_IMAGEN2" />
+                <ScalarProperty Name="PRO_IMAGEN3" ColumnName="PRO_IMAGEN3" />
+                <ScalarProperty Name="PRO_IMAGEN4" ColumnName="PRO_IMAGEN4" />
+                <ScalarProperty Name="PRO_IMAGEN5" ColumnName="PRO_IMAGEN5" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USUARIO">
+            <EntityTypeMapping TypeName="QuitoTexModel.USUARIO">
+              <MappingFragment StoreEntitySet="USUARIO">
+                <ScalarProperty Name="US_ID" ColumnName="US_ID" />
+                <ScalarProperty Name="US_NOMBRE" ColumnName="US_NOMBRE" />
+                <ScalarProperty Name="US_DIRECCION" ColumnName="US_DIRECCION" />
+                <ScalarProperty Name="US_CEDULA" ColumnName="US_CEDULA" />
+                <ScalarProperty Name="US_TELEFONO" ColumnName="US_TELEFONO" />
+                <ScalarProperty Name="US_TIPO" ColumnName="US_TIPO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="COMPRA" TypeName="QuitoTexModel.COMPRA" StoreEntitySet="COMPRA">
+            <EndProperty Name="USUARIO">
+              <ScalarProperty Name="US_ID" ColumnName="US_ID" />
+            </EndProperty>
+            <EndProperty Name="PRODUCTO">
+              <ScalarProperty Name="PRO_ID" ColumnName="PRO_ID" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
