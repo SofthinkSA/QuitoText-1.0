@@ -226,6 +226,10 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\Only-Logo.png" />
+    <Content Include="Images\QUITO TEXT-04-1.png" />
+    <Content Include="Images\QUITO TEXT-04.png" />
+    <Content Include="Images\QUITO TEXT-05.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <EntityDeploy Include="Datos\BaseQuitotext.edmx">

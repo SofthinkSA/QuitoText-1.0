@@ -48,10 +48,10 @@ namespace QuitoText_1._0.Controllers
         // POST: PRODUCTOes/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
 
-        HttpPostedFileBase http = Request.Files[0];
 
-        WebImagen webimagen = new
         public ActionResult Create([Bind(Include = "PRO_ID,CATE_ID,PRO_NOMBRE,PRO_DESCRIPCION,PRO_PRECIO,PRO_STOCK,PRO_IMAGEN,PRO_IMAGEN2,PRO_IMAGEN3,PRO_IMAGEN4,PRO_IMAGEN5")] PRODUCTO pRODUCTO)
         {
             //Desde aqui hice para convertirle a bytes
@@ -59,12 +59,6 @@ namespace QuitoText_1._0.Controllers
             WebImage webimage = new WebImage(http.InputStream);
             pRODUCTO.PRO_IMAGEN = webimage.GetBytes();
             //hasta aqui
-             
-            //HttpFileCollectionBase httpFileCollectionBase
-
-            //WebImage image = new WebImage(httpPostedFileBase.InputStream);
-
-            //pRODUCTO.PRO_IMAGEN = image.GetBytes();
 
             if (ModelState.IsValid)
             {
