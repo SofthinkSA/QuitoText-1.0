@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -137,6 +140,20 @@ namespace QuitoText_1._0.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+        public ActionResult getImage(int id)
+        {
+            PRODUCTO imagenDB = db.PRODUCTO.Find(id);
+            byte[] byteImage = imagenDB.PRO_IMAGEN;
+
+            MemoryStream memorySream = new MemoryStream(byteImage);
+            Image imagen = Image.FromStream(memorySream);
+
+            //dar formato
+            memorySream = new MemoryStream();
+            imagen.Save(memorySream, ImageFormat.Jpeg);
+            memorySream.Position = 0;
+            return File(memorySream,"image/jpg");
         }
     }
 }

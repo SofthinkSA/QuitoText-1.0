@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using QuitoText_1._0.Datos;
 using QuitoText_1._0.Models;
 
 namespace QuitoText_1._0.Controllers
@@ -333,6 +334,8 @@ namespace QuitoText_1._0.Controllers
             base.Dispose(disposing);
         }
 
+        
+
 #region Aplicaciones auxiliares
         // Se usan para protección XSRF al agregar inicios de sesión externos
         private const string XsrfKey = "XsrfId";
@@ -385,5 +388,7 @@ namespace QuitoText_1._0.Controllers
         }
 
 #endregion
+
+
     }
 }
