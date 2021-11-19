@@ -15,12 +15,12 @@ namespace QuitoText_1._0.REPOSITORIO
         }
         public List<PRODUCTO> GetPRODUCTOs()
         {
-            var consulta = from datos in contexto.PRODUCTOs select datos;
+            var consulta = from Datos in contexto.PRODUCTOes select Datos;
             return consulta.ToList();
         }
         public List<PRODUCTO> BuscarProductos(List<int> id)
         {
-            var consulta = from datos in contexto.PRODUCTOs where id.Contains(datos.PRO_ID) select datos;
+            var consulta = from Datos in contexto.PRODUCTOes where id.Contains(Datos.PRO_ID) select Datos;
             return consulta.ToList();
         }
     }

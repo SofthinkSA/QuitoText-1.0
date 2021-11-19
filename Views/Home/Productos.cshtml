@@ -1,4 +1,4 @@
-﻿@model QuitoText_1._0.Datos.PRODUCTO
+﻿@using QuitoText_1._0.Datos
 
 @{
     ViewBag.Title = "Productos";
@@ -12,7 +12,7 @@
         <div class="row gx-4 gx-lg-5 align-items-center">
             <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="@Html.DisplayTextFor(model => model.PRO_IMAGEN),@Html.DisplayTextFor(model => model.PRO_IMAGEN)" alt="..."></div>
             <div class="col-md-6">
-                <div class="small mb-1">@Html.DisplayTextFor(model => model.PRO_DESCRIPCION)</div>
+                <div class="small mb-1">@Html.DisplayTextFor(model => model.)</div>
                 <h1 class="display-5 fw-bolder">@Html.DisplayTextFor(model => model.PRO_NOMBRE)</h1>
                 <div class="fs-5 mb-5">
                     <span>S/. @Html.DisplayTextFor(model => model.PRO_PRECIO)</span>

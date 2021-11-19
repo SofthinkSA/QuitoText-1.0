@@ -13,15 +13,16 @@ namespace QuitoText_1._0.Datos
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
 
     public partial class PRODUCTO
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public PRODUCTO()
         {
             this.USUARIO = new HashSet<USUARIO>();
         }
-    
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int PRO_ID { get; set; }
         [Display(Name = "Categoria: ")]
         public int CATE_ID { get; set; }

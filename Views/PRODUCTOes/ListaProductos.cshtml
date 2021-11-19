@@ -3,35 +3,52 @@
     ViewBag.Title = "ListaProductos";
 }
 
+<style type="text/css">
+    #container {
+        display: flex;
+        flex-direction:row;
+        flex-wrap: wrap;
+        height: 208px;
+        float:left;
+        
+    }
+    #Producto {
+        flex-direction: column;
+        flex-wrap: wrap;
+        padding-bottom: 150px;
+        padding-bottom: 100px;
+        padding-left: 100px;
+        float: left;
+        align-items: center;
+        text-align: center;
+    }
+   
 
+
+</style>
 <h2>Productos de la tienda</h2>
 
-@Html.ActionLink("Ver carrito de la compra", "ProductosCarrito", "Producto")
+@Html.ActionLink("Ver carrito de la compra", "ProductosCarrito", "PRODUCTOes")
 <br />
 
-<table class="table table-striped">
-    <tr>
-        <th>NOMBRE</th>
-        <th>TELÉFONO</th>
-        <th>IMAGEN</th>
-        <th>COMPRAR</th>
-    </tr>
     @foreach (PRODUCTO prod in Model)
     {
-        <tr>
-
-            <td>@prod.PRO_NOMBRE</td>
-            <td>@prod.PRO_PRECIO € </td>
-            <td><img style="width:70px;height:70px" src="~/img/@prod.PRO_IMAGEN" /></td>
-
-            @if (ViewBag.Carrito != null && ViewBag.Carrito.Contains(prod.PRO_ID))
-            {
-                <td><img style="width:20px;height:20px" src="https://image.flaticon.com/icons/png/512/107/107831.png" /><span> Añadido al carrito</span></td>
-            }
-            else
-            {
-                <td>@Html.ActionLink("Añadir al carrito", "ListaProductos", "Producto", new { id = prod.PRO_ID }, new { @class = "btn btn-primary" })</td>
-            }
-        </tr>
+           
+<div id="Producto">
+    <img style="width:250px;height:250px" src="@Url.Action("getImage","PRODUCTOes", new { id=prod.PRO_ID})" />
+    <div id="nombre">@prod.PRO_NOMBRE</div>
+    <div id="precio">$ @prod.PRO_PRECIO </div>
+    @if (ViewBag.Carrito != null && ViewBag.Carrito.Contains(prod.PRO_ID))
+    {
+        <div><img style="width:20px;height:20px" src="https://image.flaticon.com/icons/png/512/107/107831.png" /><span> Añadido al carrito</span></div> }
+    else
+    {
+        <div>@Html.ActionLink("Añadir al carrito", "ProductosCarrito", "PRODUCTOes", new { id = prod.PRO_ID }, new { @class = "btn btn-primary" })</div><br />
+        <div>@Html.ActionLink("Ver Detalles", "Details", "PRODUCTOes", new { id = prod.PRO_ID }, new { @class = "btn btn-primary" })</div>
     }
-</table>
+
+</div>
+        
+    }
+<br />
+

@@ -6,7 +6,7 @@
 
 <h2>Carrito de la compra</h2>
 
-@if (Session["PRODUCTOS"] == null)
+@if (Session["PRODUCTOes"] == null)
 {
     <h2 style="color:red">
         No hay ningun producto en el carrito
@@ -17,16 +17,14 @@ else
     <dl class="row">
         @foreach (Producto prod in Model)
         {
-            <dt><img style="width:70px;height:70px" src="~/img/@prod.PRO_IMAGEN" /></dt>
+            <dt><img style="width:70px;height:70px" src="@Url.Action("getImage","PRODUCTOes", new { id=prod.PRO_ID})" /></dt>
             <dd>@prod.PRO_IMAGEN</dd>
-            <dd>@prod.PRO_PRECIO €</dd>
+            <dd>S@prod.PRO_PRECIO </dd>
             <dd>
-                @Html.ActionLink("Eliminar del carrito"
-                , "ProductosCarrito", "Producto"
-                , new { id = prod.PRO_ID }, null)
+                @Html.ActionLink("Eliminar del carrito", "ProductosCarrito", "Producto", new { id = prod.PRO_ID }, null)
             </dd>
             <br />
         }
     </dl>
 }
-@Html.ActionLink("Volver a los productos", "ListaProductos", "Producto")
+@Html.ActionLink("Volver a los productos", "ListaProductos", "PRODUCTOes")

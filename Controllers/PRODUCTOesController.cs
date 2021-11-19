@@ -178,45 +178,49 @@ namespace QuitoText_1._0.Controllers
             if (id != null)
             {
                 List<int> codigosProductos;
-                if (Session["PRODUCTOs"]==null)
+                if (Session["PRODUCTOes"]==null)
                 {
                     codigosProductos = new List<int>();
                 }
                 else
                 {
-                    codigosProductos = Session["PRODUCTOs"] as List<int>;
+                    codigosProductos = Session["PRODUCTOes"] as List<int>;
                 }
                 codigosProductos.Add(id.Value);
-                Session["PRODUCTOes"] = codigosProductos;
-                
-
+                Session["PRODUCTOes"] = codigosProductos;                
             }
-            ViewBag.Carrito = Session["PRODUCTOs"];
+            ViewBag.Carrito = Session["PRODUCTOes"];
             List<PRODUCTO> prod = this.repo.GetPRODUCTOs();
             return View(prod);
         }
+
+     
         public ActionResult ProductosCarrito(int? id)
         {
             if (id != null)
             {
-                List<int> lista = (List<int>)Session["PRODUCTOs"];
-                lista.Remove(id.GetValueOrDefault());
-                if (lista.Count() == 0)
+                if (Session["PRODUCTOes"] != null)
                 {
-                    Session["PRODUCTOs"] = null;
-                }
-                else
-                {
-                    Session["PRODUCTOs"] = lista;
-                }
+                    List<int> lista = (List<int>)Session["PRODUCTOes"];
+                    lista.Remove(id.GetValueOrDefault());
+                    if (lista.Count() == 0)
+                    {
+                        Session["PRODUCTOes"] = null;
+                    }
+                    else
+                    {
+                        Session["PRODUCTOes"] = lista;
+                    }
+                }                                    
+                
             }
-            if (Session["PRODUCTOs"] == null)
+            if (Session["PRODUCTOes"] == null)
             {
                 return View();
             }
             else
             {
-                List<int> lista = (List<int>)Session["PRODUCTOs"];
+                List<int> lista = (List<int>)Session["PRODUCTOes"];
                 List<PRODUCTO> prod = this.repo.BuscarProductos(lista);
                 return View(prod);
             }
