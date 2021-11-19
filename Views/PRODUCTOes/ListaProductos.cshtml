@@ -1,0 +1,37 @@
+﻿@using QuitoText_1._0.Datos
+@{
+    ViewBag.Title = "ListaProductos";
+}
+
+
+<h2>Productos de la tienda</h2>
+
+@Html.ActionLink("Ver carrito de la compra", "ProductosCarrito", "Producto")
+<br />
+
+<table class="table table-striped">
+    <tr>
+        <th>NOMBRE</th>
+        <th>TELÉFONO</th>
+        <th>IMAGEN</th>
+        <th>COMPRAR</th>
+    </tr>
+    @foreach (PRODUCTO prod in Model)
+    {
+        <tr>
+
+            <td>@prod.PRO_NOMBRE</td>
+            <td>@prod.PRO_PRECIO € </td>
+            <td><img style="width:70px;height:70px" src="~/img/@prod.PRO_IMAGEN" /></td>
+
+            @if (ViewBag.Carrito != null && ViewBag.Carrito.Contains(prod.PRO_ID))
+            {
+                <td><img style="width:20px;height:20px" src="https://image.flaticon.com/icons/png/512/107/107831.png" /><span> Añadido al carrito</span></td>
+            }
+            else
+            {
+                <td>@Html.ActionLink("Añadir al carrito", "ListaProductos", "Producto", new { id = prod.PRO_ID }, new { @class = "btn btn-primary" })</td>
+            }
+        </tr>
+    }
+</table>

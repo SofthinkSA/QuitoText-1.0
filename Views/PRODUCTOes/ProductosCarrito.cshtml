@@ -1,0 +1,32 @@
+﻿@using QuitoText_1._0.Models
+
+@{
+    ViewBag.Title = "ProductosCarrito";
+}
+
+<h2>Carrito de la compra</h2>
+
+@if (Session["PRODUCTOS"] == null)
+{
+    <h2 style="color:red">
+        No hay ningun producto en el carrito
+    </h2>
+}
+else
+{
+    <dl class="row">
+        @foreach (Producto prod in Model)
+        {
+            <dt><img style="width:70px;height:70px" src="~/img/@prod.PRO_IMAGEN" /></dt>
+            <dd>@prod.PRO_IMAGEN</dd>
+            <dd>@prod.PRO_PRECIO €</dd>
+            <dd>
+                @Html.ActionLink("Eliminar del carrito"
+                , "ProductosCarrito", "Producto"
+                , new { id = prod.PRO_ID }, null)
+            </dd>
+            <br />
+        }
+    </dl>
+}
+@Html.ActionLink("Volver a los productos", "ListaProductos", "Producto")

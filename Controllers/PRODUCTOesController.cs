@@ -12,11 +12,17 @@ using System.Web.Helpers;
 using System.Web.Mvc;
 using System.Web.WebPages;
 using QuitoText_1._0.Datos;
+using QuitoText_1._0.REPOSITORIO;
 
 namespace QuitoText_1._0.Controllers
 {
     public class PRODUCTOesController : Controller
     {
+        REPOSITORIOPRODUCTO repo;
+        public PRODUCTOesController()
+        {
+            repo= new REPOSITORIOPRODUCTO();
+        }
         private QuitoTexEntities db = new QuitoTexEntities();
 
         // GET: PRODUCTOes
@@ -97,6 +103,17 @@ namespace QuitoText_1._0.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "PRO_ID,CATE_ID,PRO_NOMBRE,PRO_DESCRIPCION,PRO_PRECIO,PRO_STOCK,PRO_IMAGEN,PRO_IMAGEN2,PRO_IMAGEN3,PRO_IMAGEN4,PRO_IMAGEN5")] PRODUCTO pRODUCTO)
         {
+            byte[] imagenActual = null;
+            HttpPostedFileBase http = Request.Files[0];
+            if (http==null)
+            {
+                imagenActual = db.PRODUCTO.SingleOrDefault(t=>t.PRO_ID ==pRODUCTO.PRO_ID).PRO_IMAGEN;
+            }
+            else
+            {
+                WebImage webimage = new WebImage(http.InputStream);
+                pRODUCTO.PRO_IMAGEN = webimage.GetBytes();
+            }
             if (ModelState.IsValid)
             {
                 db.Entry(pRODUCTO).State = EntityState.Modified;
@@ -154,6 +171,60 @@ namespace QuitoText_1._0.Controllers
             imagen.Save(memorySream, ImageFormat.Jpeg);
             memorySream.Position = 0;
             return File(memorySream,"image/jpg");
+        }
+        //GET:PRODUCTO
+        public ActionResult ListaProductos(int? id)
+        {
+            if (id != null)
+            {
+                List<int> codigosProductos;
+                if (Session["PRODUCTOs"]==null)
+                {
+                    codigosProductos = new List<int>();
+                }
+                else
+                {
+                    codigosProductos = Session["PRODUCTOs"] as List<int>;
+                }
+                codigosProductos.Add(id.Value);
+                Session["PRODUCTOes"] = codigosProductos;
+                
+
+            }
+            ViewBag.Carrito = Session["PRODUCTOs"];
+            List<PRODUCTO> prod = this.repo.GetPRODUCTOs();
+            return View(prod);
+        }
+        public ActionResult ProductosCarrito(int? id)
+        {
+            if (id != null)
+            {
+                List<int> lista = (List<int>)Session["PRODUCTOs"];
+                lista.Remove(id.GetValueOrDefault());
+                if (lista.Count() == 0)
+                {
+                    Session["PRODUCTOs"] = null;
+                }
+                else
+                {
+                    Session["PRODUCTOs"] = lista;
+                }
+            }
+            if (Session["PRODUCTOs"] == null)
+            {
+                return View();
+            }
+            else
+            {
+                List<int> lista = (List<int>)Session["PRODUCTOs"];
+                List<PRODUCTO> prod = this.repo.BuscarProductos(lista);
+                return View(prod);
+            }
+
+            //segundas funciones
+
+
+            
         }
     }
 }

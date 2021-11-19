@@ -1,4 +1,5 @@
-﻿@{
+﻿@model QuitoText_1._0.Datos.PRODUCTO
+@{
     ViewBag.Title = "Home Page";
 }
 
@@ -29,3 +30,75 @@
         <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
     </div>
 </div>
+
+
+<script>
+        $(".btn-categoria").click(function () {
+            $('#exampleModal').modal('show');
+        });
+
+        $(document).ready(function () {
+
+            jQuery.ajax({
+                url: '@Url.Action("ListarProducto", "Home")',
+                type: "GET",
+                data: null,
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+
+                    $("#catalogo-productos").LoadingOverlay("hide");
+                    if (data.data != null) {
+
+                        $.each(data.data, function (i, item) {
+                            //catalogo-productos
+                            $("<div>").addClass("col mb-5").append(
+                                $("<div>").addClass("card h-100").append(
+                                    $("<img>").addClass("card-img-top").attr({ "src": "data:image/" + item.extension + ";base64," + item.base64 }),
+                                    //Product details
+                                    $("<div>").addClass("card-body p-4").append(
+                                        $("<div>").addClass("text-center").append(
+                                            $("<h5>").addClass("fw-bolder").text(item.Nombre),
+                                            "S/. " + item.Precio
+                                        )
+                                    ),
+                                    //Product actions
+                                    $("<div>").addClass("card-footer p-4 pt-0 border-top-0 bg-transparent").append(
+                                        $("<div>").addClass("d-grid d-md-grid gap-2 d-md-block align-items-center text-center").append(
+                                            $("<button>").addClass("btn btn-outline-dark mt-auto").text("Ver Detalle"),
+                                            $("<button>").addClass("btn btn-outline-dark mt-auto").text("Agregar al carrito")
+
+                                        )
+                                    )
+                                )
+
+                            ).appendTo("#catalogo-productos")
+
+
+                        });
+
+                        //Activo: true
+                        //Descripcion: "Tipo: PS4\nProcesador: AMD\nEntradas USB: 3\nEntradas HDMI: 1\nConectividad: WiFi"
+                        //IdProducto: 1
+                        //Nombre: "Consola de PS4 Pro 1TB Negro"
+                        //Precio: 2000
+                        //RutaImagen: "~/Imagenes/Productos/1.jpg"
+                        //Stock: 50
+                        //base64: "/9j/4AAQSkZJRgABAQEASABIAAD/2wCEAAYEBQYFBAYGBQYHB
+                        //extension: "jpg"
+                    }
+                },
+                error: function (error) {
+                    console.log(error)
+                },
+                beforeSend: function () {
+                    $("#catalogo-productos").LoadingOverlay("show");
+                },
+            });
+
+
+        })
+
+
+</script>
+

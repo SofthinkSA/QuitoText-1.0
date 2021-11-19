@@ -1,0 +1,31 @@
+﻿@model QuitoText_1._0.Datos.PRODUCTO
+
+@{
+    ViewBag.Title = "Productos";
+    Layout = "~/Views/Shared/_Layoutcshtml";
+}
+
+<h2>View</h2>
+
+<section class="py-5">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="row gx-4 gx-lg-5 align-items-center">
+            <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="@Html.DisplayTextFor(model => model.PRO_IMAGEN),@Html.DisplayTextFor(model => model.PRO_IMAGEN)" alt="..."></div>
+            <div class="col-md-6">
+                <div class="small mb-1">@Html.DisplayTextFor(model => model.PRO_DESCRIPCION)</div>
+                <h1 class="display-5 fw-bolder">@Html.DisplayTextFor(model => model.PRO_NOMBRE)</h1>
+                <div class="fs-5 mb-5">
+                    <span>S/. @Html.DisplayTextFor(model => model.PRO_PRECIO)</span>
+                </div>
+                <p class="lead">@Html.DisplayTextFor(model => model.PRO_DESCRIPCION)</p>
+                <div class="d-flex">
+                    <a href="@Url.Action("Index", "Home")" class="btn btn-danger w-50 text-center me-3">
+                        <i class="fas fa-undo-alt"></i> Volver
+                    </a>
+                   
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

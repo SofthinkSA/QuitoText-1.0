@@ -48,40 +48,11 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.PRO_IMAGEN)
+            
+            <img width="100" src="@Url.Action("getImage","PRODUCTOes", new { id=Model.PRO_ID})" />
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.PRO_IMAGEN2)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PRO_IMAGEN2)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.PRO_IMAGEN3)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PRO_IMAGEN3)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.PRO_IMAGEN4)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PRO_IMAGEN4)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.PRO_IMAGEN5)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PRO_IMAGEN5)
-        </dd>
+        
 
         <dt>
             @Html.DisplayNameFor(model => model.CATEGORIA.CATE_NOMBRE)

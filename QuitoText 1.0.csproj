@@ -192,6 +192,7 @@
     <Compile Include="Datos\CATEGORIA.cs">
       <DependentUpon>BaseQuitotext.tt</DependentUpon>
     </Compile>
+    <Compile Include="Datos\ContextoProducto.cs" />
     <Compile Include="Datos\PRODUCTO.cs">
       <DependentUpon>BaseQuitotext.tt</DependentUpon>
     </Compile>
@@ -202,9 +203,11 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Producto.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="REPOSITORIO\REPOSITORIOPRODUCTO.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -250,6 +253,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\Script%27s owner\listar productos y carrito .js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -295,6 +299,10 @@
     <Content Include="Views\CATEGORIAs\Edit.cshtml" />
     <Content Include="Views\CATEGORIAs\Index.cshtml" />
     <Content Include="Views\Shared\_LayoutProducto.cshtml" />
+    <Content Include="Views\PRODUCTOes\ProductosCarrito.cshtml" />
+    <Content Include="Views\PRODUCTOes\ListaProductos.cshtml" />
+    <Content Include="Views\Home\Productos.cshtml" />
+    <Content Include="Views\Home\ListaProductos.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
