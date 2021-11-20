@@ -11,7 +11,8 @@ namespace QuitoText_1._0.Datos
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class USUARIO
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,6 +22,26 @@ namespace QuitoText_1._0.Datos
         }
     
         public int US_ID { get; set; }
+
+        [Required]
+        [EmailAddress]
+        [Display(Name = "Correo electrónico")]
+        public string US_EMAIL { get; set; }
+
+        [Required]
+        [StringLength(100, ErrorMessage = "El número de caracteres de {0} debe ser al menos {2}.", MinimumLength = 6)]
+        [DataType(DataType.Password)]
+        [Display(Name = "Contraseña")]
+        public string Contraseña { get; set; }
+
+        [DataType(DataType.Password)]
+        [Display(Name = "Confirmar contraseña")]
+        [Compare("Password", ErrorMessage = "La contraseña y la contraseña de confirmación no coinciden.")]
+        public string ConfirmarContraseña { get; set; }
+        [Required]
+        [EmailAddress]
+        [Display(Name = "Correo electrónico")]
+        public string Email { get; set; }
         public string US_NOMBRE { get; set; }
         public string US_DIRECCION { get; set; }
         public string US_CEDULA { get; set; }

@@ -299,10 +299,10 @@
     <Content Include="Views\CATEGORIAs\Edit.cshtml" />
     <Content Include="Views\CATEGORIAs\Index.cshtml" />
     <Content Include="Views\Shared\_LayoutProducto.cshtml" />
-    <Content Include="Views\PRODUCTOes\ProductosCarrito.cshtml" />
     <Content Include="Views\PRODUCTOes\ListaProductos.cshtml" />
     <Content Include="Views\Home\Productos.cshtml" />
     <Content Include="Views\Home\ListaProductos.cshtml" />
+    <Content Include="Views\PRODUCTOes\ProductosCarrito.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

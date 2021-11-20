@@ -79,6 +79,8 @@ namespace QuitoText_1._0.Models
         [Display(Name = "Confirmar contraseña")]
         [Compare("Password", ErrorMessage = "La contraseña y la contraseña de confirmación no coinciden.")]
         public string ConfirmPassword { get; set; }
+
+
     }
 
     public class ResetPasswordViewModel

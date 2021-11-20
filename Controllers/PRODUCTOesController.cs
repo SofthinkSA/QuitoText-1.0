@@ -23,6 +23,7 @@ namespace QuitoText_1._0.Controllers
         {
             repo= new REPOSITORIOPRODUCTO();
         }
+        
         private QuitoTexEntities db = new QuitoTexEntities();
 
         // GET: PRODUCTOes
@@ -172,6 +173,7 @@ namespace QuitoText_1._0.Controllers
             memorySream.Position = 0;
             return File(memorySream,"image/jpg");
         }
+        
         //GET:PRODUCTO
         public ActionResult ListaProductos(int? id)
         {
@@ -200,7 +202,7 @@ namespace QuitoText_1._0.Controllers
             if (id != null)
             {
                 if (Session["PRODUCTOes"] != null)
-                {
+				{
                     List<int> lista = (List<int>)Session["PRODUCTOes"];
                     lista.Remove(id.GetValueOrDefault());
                     if (lista.Count() == 0)
@@ -211,8 +213,7 @@ namespace QuitoText_1._0.Controllers
                     {
                         Session["PRODUCTOes"] = lista;
                     }
-                }                                    
-                
+                }
             }
             if (Session["PRODUCTOes"] == null)
             {

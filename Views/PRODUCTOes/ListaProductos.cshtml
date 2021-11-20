@@ -35,17 +35,21 @@
     {
            
 <div id="Producto">
-    <img style="width:250px;height:250px" src="@Url.Action("getImage","PRODUCTOes", new { id=prod.PRO_ID})" />
-    <div id="nombre">@prod.PRO_NOMBRE</div>
-    <div id="precio">$ @prod.PRO_PRECIO </div>
-    @if (ViewBag.Carrito != null && ViewBag.Carrito.Contains(prod.PRO_ID))
-    {
-        <div><img style="width:20px;height:20px" src="https://image.flaticon.com/icons/png/512/107/107831.png" /><span> Añadido al carrito</span></div> }
-    else
-    {
-        <div>@Html.ActionLink("Añadir al carrito", "ProductosCarrito", "PRODUCTOes", new { id = prod.PRO_ID }, new { @class = "btn btn-primary" })</div><br />
-        <div>@Html.ActionLink("Ver Detalles", "Details", "PRODUCTOes", new { id = prod.PRO_ID }, new { @class = "btn btn-primary" })</div>
-    }
+	@{
+		var base64 = Convert.ToBase64String(prod.PRO_IMAGEN);
+		var imgSrc = String.Format("data:image/jpg;base64,{0}", base64);
+	}
+	<img style="width:250px;height:250px" src="@imgSrc" />
+	<div id="nombre">@prod.PRO_NOMBRE</div>
+	<div id="precio">$ @prod.PRO_PRECIO </div>
+	@if (ViewBag.Carrito != null && ViewBag.Carrito.Contains(prod.PRO_ID))
+	{
+		<div><img style="width:20px;height:20px" src="https://image.flaticon.com/icons/png/512/107/107831.png" /><span> Añadido al carrito</span></div> }
+	else
+	{
+		<div>@Html.ActionLink("Añadir al carrito", "ListaProductos", "PRODUCTOes", new { id = prod.PRO_ID }, new { @class = "btn btn-primary" })</div><br />
+		<div>@Html.ActionLink("Ver Detalles", "Details", "PRODUCTOes", new { id = prod.PRO_ID }, new { @class = "btn btn-primary" })</div>
+	}
 
 </div>
         

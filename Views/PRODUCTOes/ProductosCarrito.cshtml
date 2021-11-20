@@ -1,4 +1,4 @@
-﻿@using QuitoText_1._0.Models
+﻿@using QuitoText_1._0.Datos
 
 @{
     ViewBag.Title = "ProductosCarrito";
@@ -14,17 +14,44 @@
 }
 else
 {
-    <dl class="row">
-        @foreach (Producto prod in Model)
-        {
-            <dt><img style="width:70px;height:70px" src="@Url.Action("getImage","PRODUCTOes", new { id=prod.PRO_ID})" /></dt>
-            <dd>@prod.PRO_IMAGEN</dd>
-            <dd>S@prod.PRO_PRECIO </dd>
-            <dd>
-                @Html.ActionLink("Eliminar del carrito", "ProductosCarrito", "Producto", new { id = prod.PRO_ID }, null)
-            </dd>
+<table class="table">
+    <tr>
+        <th>
+            Imagen
+
+        </th>
+        <th>
+            Nombre
+        </th>
+        <th>
+            Descripcion
+        </th>
+        <th>
+            Precio
+        </th>
+        <th>
+            Cantidad
+        </th>
+    </tr>
+    @foreach (PRODUCTO prod in Model)
+    {
+        var base64 = Convert.ToBase64String(prod.PRO_IMAGEN);
+        var imgSrc = String.Format("data:image/jpg;base64,{0}", base64);
+        <tr>            
+            <td>
+                <img style="width:150px;height:150px" src="@imgSrc" />
+            </td>        
+            <td>@prod.PRO_NOMBRE</td>
+            <td>@prod.PRO_DESCRIPCION</td>
+            <td>$ @prod.PRO_PRECIO </td>
+            <td><input type="number" min="1" value="1"</td>
+            <td></td>
+            <td>
+                @Html.ActionLink("Eliminar del carrito", "ProductosCarrito", "PRODUCTOes", new { id = prod.PRO_ID }, null)
+            </td>
             <br />
-        }
-    </dl>
+        </tr>
+    }
+</table>
 }
 @Html.ActionLink("Volver a los productos", "ListaProductos", "PRODUCTOes")
