@@ -6,16 +6,35 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>@ViewBag.Title - QUITOTEX</title>
+    <title>@ViewBag.Title - TEXTIWORLD</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
 </head>
+<style type="text/css">
+    .btnCarrito {
+        background: url(/Images/carrito-White.png) no-repeat top left;
+        display: block;
+        width: 40px;
+        height: 40px;
+        text-indent: -9999px; /* hides the link text */
+    }
+
+    .navbar-inverse {
+        background-color: #36c2ef;
+    }
+    .navbar-inverse .navbar-nav > li > a {
+            color: #000000;
+    }
+        .navbar-inverse .navbar-brand {
+            color: #000000;
+        }
+</style>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
-                <a class="navbar-brand" href="#">
+                <a class="navbar-brand" >
 
                     <img alt="Brand" style="max-width: 40px; max-height: 40px; margin-top: -10px;" src="~/Images/Only-Logo.png">
 
@@ -28,19 +47,20 @@
                 </button>
 
 
-                @Html.ActionLink("QUITOTEX", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("TEXTIWORLD", "ListaProductos", "PRODUCTOes", new { area = "" }, new { @class = "navbar-brand" })
 
             </div>
             <div class="navbar-collapse collapse">
 
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Inicio", "Index", "Home")</li>
+
                     <li>@Html.ActionLink("Acerca de", "About", "Home")</li>
                     <li>@Html.ActionLink("Contacto", "Contact", "Home")</li>
                     <li>@Html.ActionLink("Productos", "Create", "PRODUCTOes")</li>
-                    <li>@Html.ActionLink("Categoria", "Create", "CATEGORIAs")</li>
-                    <li>@Html.ActionLink("Lista Productos", "ListaProductos", "PRODUCTOes")</li>
-                    <li>@Html.ActionLink("Carrito", "ProductosCarrito", "PRODUCTOes")</li>
+                    <li>@Html.ActionLink("Categorias", "Create", "CATEGORIAs")</li>
+
+
+
 
                 </ul>
                 @Html.Partial("_LoginPartial")

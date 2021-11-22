@@ -1,4 +1,23 @@
 ﻿@using Microsoft.AspNet.Identity
+
+
+<style type="text/css">
+    .btnCarrito {
+        background: url(/Images/carrito-White.png) no-repeat top left;
+        display: block;
+        width: 40px;
+        height: 40px;
+        text-indent: -9999px; /* hides the link text */
+    }
+    .nav navbar-nav navbar-right {
+        color: aquamarine;
+    }
+
+
+
+</style>
+
+
 @if (Request.IsAuthenticated)
 {
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
@@ -15,8 +34,16 @@
 }
 else
 {
-    <ul class="nav navbar-nav navbar-right">
-        <li>@Html.ActionLink("Registrarse", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
-        <li>@Html.ActionLink("Iniciar sesión", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
-    </ul>
+<ul class="nav navbar-nav navbar-right">
+    
+    <li><a href="@Url.Action("ProductosCarrito", "PRODUCTOes")" title="List View" class="links">
+        <img alt="List View" style="max-width: 40px; max-height: 40px; margin-top:-8px;" src="@Url.Content("~/Images/carrito-White.png")">
+        
+        </a>
+    </li>
+
+    <li>@Html.ActionLink("Registrarse", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+    <li>@Html.ActionLink("Iniciar sesión", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+</ul>
 }
+

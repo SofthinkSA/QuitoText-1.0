@@ -22,31 +22,21 @@ namespace QuitoText_1._0.Datos
         }
     
         public int US_ID { get; set; }
-
-        [Required]
-        [EmailAddress]
-        [Display(Name = "Correo electrónico")]
-        public string US_EMAIL { get; set; }
-
-        [Required]
-        [StringLength(100, ErrorMessage = "El número de caracteres de {0} debe ser al menos {2}.", MinimumLength = 6)]
-        [DataType(DataType.Password)]
-        [Display(Name = "Contraseña")]
-        public string Contraseña { get; set; }
-
-        [DataType(DataType.Password)]
-        [Display(Name = "Confirmar contraseña")]
-        [Compare("Password", ErrorMessage = "La contraseña y la contraseña de confirmación no coinciden.")]
-        public string ConfirmarContraseña { get; set; }
-        [Required]
-        [EmailAddress]
-        [Display(Name = "Correo electrónico")]
-        public string Email { get; set; }
+        [Display(Name = "Nombre")]
         public string US_NOMBRE { get; set; }
+        [Display(Name = "Dirección")]
         public string US_DIRECCION { get; set; }
+        [Display(Name = "Cedula")]
         public string US_CEDULA { get; set; }
+        [Display(Name = "Teléfono")]
         public string US_TELEFONO { get; set; }
         public string US_TIPO { get; set; }
+        [Display(Name = "Email")]
+        public string US_EMAIL { get; set; }
+        [Display(Name = "Contraseña")]
+        public string US_PASSWORD { get; set; }
+        [Display(Name = "Confirme Contraseña ")]
+        public string US_CONFIRMPASWORD { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PRODUCTO> PRODUCTO { get; set; }

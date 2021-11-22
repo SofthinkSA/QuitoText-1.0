@@ -16,7 +16,7 @@ namespace QuitoText_1._0
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "PRODUCTOes", action = "ListaProductos", id = UrlParameter.Optional }
             );
         }
     }

@@ -13,7 +13,7 @@ using System.Web.Mvc;
 using System.Web.WebPages;
 using QuitoText_1._0.Datos;
 using QuitoText_1._0.REPOSITORIO;
-
+using PagedList;
 namespace QuitoText_1._0.Controllers
 {
     public class PRODUCTOesController : Controller
@@ -27,10 +27,15 @@ namespace QuitoText_1._0.Controllers
         private QuitoTexEntities db = new QuitoTexEntities();
 
         // GET: PRODUCTOes
-        public ActionResult Index()
+
+        public ActionResult Index(int? pageSize, int? page)
         {
             var pRODUCTO = db.PRODUCTO.Include(p => p.CATEGORIA);
-            return View(pRODUCTO.ToList());
+            pageSize = (pageSize ?? 11);
+            page = (page ?? 1);
+            ViewBag.PageSize = pageSize;
+            //return View(pRODUCTO.ToList());
+            return View(pRODUCTO.ToList().ToPagedList(page.Value, pageSize.Value));
         }
 
         // GET: PRODUCTOes/Details/5
@@ -93,6 +98,18 @@ namespace QuitoText_1._0.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.CATE_ID = new SelectList(db.CATEGORIA, "CATE_ID", "CATE_NOMBRE", pRODUCTO.CATE_ID);
+            return View(pRODUCTO);
+        }
+         public ActionResult putCompra([Bind(Include = "PRO_ID,PRO_NOMBRE,PRO_DESCRIPCION,PRO_PRECIO,PRO_STOCK,PRO_IMAGEN,PRO_IMAGEN2,PRO_IMAGEN3,PRO_IMAGEN4,PRO_IMAGEN5")] PRODUCTO pRODUCTO)
+        {
+            if (ModelState.IsValid)
+            {
+                db.PRODUCTO.Add(pRODUCTO);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
             ViewBag.CATE_ID = new SelectList(db.CATEGORIA, "CATE_ID", "CATE_NOMBRE", pRODUCTO.CATE_ID);
             return View(pRODUCTO);
         }
@@ -175,7 +192,7 @@ namespace QuitoText_1._0.Controllers
         }
         
         //GET:PRODUCTO
-        public ActionResult ListaProductos(int? id)
+        public ActionResult ListaProductos(int? id, int? pageSize, int? page)
         {
             if (id != null)
             {
@@ -193,7 +210,14 @@ namespace QuitoText_1._0.Controllers
             }
             ViewBag.Carrito = Session["PRODUCTOes"];
             List<PRODUCTO> prod = this.repo.GetPRODUCTOs();
-            return View(prod);
+
+
+            pageSize = (pageSize ?? 11);
+            page = (page ?? 1);
+            ViewBag.PageSize = pageSize;
+            
+            return View(prod.ToList().ToPagedList(page.Value, pageSize.Value));
+            //return View(prod);
         }
 
      
@@ -226,10 +250,47 @@ namespace QuitoText_1._0.Controllers
                 return View(prod);
             }
 
-            //segundas funciones
-
-
-            
+            //segundas funciones            
         }
+        /*
+        public ActionResult CalculoValorItemCantidad(int? id, int? cantidad)
+        {
+            if (id == null)
+            {
+                return 0;// new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            PRODUCTO pRODUCTO = db.PRODUCTO.Find(id);
+            if (pRODUCTO == null)
+            {
+                return 0;// HttpNotFound();
+            }
+
+            decimal? subtotalItem = pRODUCTO.PRO_PRECIO * cantidad;
+            return subtotalItem;
+        }
+        public ActionResult CalculoValorItemCantidad2(decimal? precio, int? cantidad)
+        {
+            decimal? subtotalItem = 0;
+            if (precio != null && cantidad != null)
+            {
+                subtotalItem = precio * cantidad;
+            }
+            return subtotalItem;
+        }*/
+
+
+       /* public decimal GetTotal()
+        {
+            ShoppingCartId = GetCartId();
+            // Multiply product price by quantity of that product to get        
+            // the current price for each of those products in the cart.  
+            // Sum all product price totals to get the cart total.   
+            decimal? total = decimal.Zero;
+            total = (decimal?)(from cartItems in _db.ShoppingCartItems
+                               where cartItems.CartId == ShoppingCartId
+                               select (int?)cartItems.Quantity *
+                               cartItems.Product.UnitPrice).Sum();
+            return total ?? decimal.Zero;
+        }*/
     }
 }

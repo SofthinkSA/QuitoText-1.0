@@ -28,5 +28,6 @@ namespace QuitoText_1._0.Datos
         public virtual DbSet<CATEGORIA> CATEGORIA { get; set; }
         public virtual DbSet<PRODUCTO> PRODUCTO { get; set; }
         public virtual DbSet<USUARIO> USUARIO { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
     }
 }

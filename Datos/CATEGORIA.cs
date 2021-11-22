@@ -20,9 +20,9 @@ namespace QuitoText_1._0.Datos
         {
             this.PRODUCTO = new HashSet<PRODUCTO>();
         }
-        [Display(Name = "Categoria: ")]
+        [Display(Name = "Categoria")]
         public int CATE_ID { get; set; }
-        [Display(Name = "Categoria: ")]
+        [Display(Name = "Categoria")]
         public string CATE_NOMBRE { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

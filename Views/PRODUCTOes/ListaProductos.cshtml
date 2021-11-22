@@ -1,4 +1,7 @@
-﻿@using QuitoText_1._0.Datos
+﻿
+@using QuitoText_1._0.Datos
+@using PagedList.Mvc;
+@model PagedList.IPagedList<QuitoText_1._0.Datos.PRODUCTO>
 @{
     ViewBag.Title = "ListaProductos";
 }
@@ -6,12 +9,12 @@
 <style type="text/css">
     #container {
         display: flex;
-        flex-direction:row;
+        flex-direction: row;
         flex-wrap: wrap;
         height: 208px;
-        float:left;
-        
+        float: left;
     }
+
     #Producto {
         flex-direction: column;
         flex-wrap: wrap;
@@ -22,37 +25,56 @@
         align-items: center;
         text-align: center;
     }
-   
 
-
+    #nombre {
+        font-size: 20px;
+    }
 </style>
 <h2>Productos de la tienda</h2>
 
 @Html.ActionLink("Ver carrito de la compra", "ProductosCarrito", "PRODUCTOes")
 <br />
+<p>Cantidad de elementos por Página</p>
+@using (Html.BeginForm("Index", "PRODUCTOes", FormMethod.Get))
+{
+    <p>
+        <select name="PageSize" id="PageSize" class="form-control">
+            <option @if ((int)ViewBag.PageSize == 5) { @Html.Raw("selected") } value="5"> 5</option>
+            <option @if ((int)ViewBag.PageSize == 5) { @Html.Raw("selected") } value="10"> 10</option>
+            <option @if ((int)ViewBag.PageSize == 5) { @Html.Raw("selected") } value="15"> 15</option>
+        </select>
+        <br />
 
-    @foreach (PRODUCTO prod in Model)
-    {
-           
-<div id="Producto">
-	@{
-		var base64 = Convert.ToBase64String(prod.PRO_IMAGEN);
-		var imgSrc = String.Format("data:image/jpg;base64,{0}", base64);
-	}
-	<img style="width:250px;height:250px" src="@imgSrc" />
-	<div id="nombre">@prod.PRO_NOMBRE</div>
-	<div id="precio">$ @prod.PRO_PRECIO </div>
-	@if (ViewBag.Carrito != null && ViewBag.Carrito.Contains(prod.PRO_ID))
-	{
-		<div><img style="width:20px;height:20px" src="https://image.flaticon.com/icons/png/512/107/107831.png" /><span> Añadido al carrito</span></div> }
-	else
-	{
-		<div>@Html.ActionLink("Añadir al carrito", "ListaProductos", "PRODUCTOes", new { id = prod.PRO_ID }, new { @class = "btn btn-primary" })</div><br />
-		<div>@Html.ActionLink("Ver Detalles", "Details", "PRODUCTOes", new { id = prod.PRO_ID }, new { @class = "btn btn-primary" })</div>
-	}
+        <input type="submit" value="Apply" class="btn btn-sm btn-primary" />
+    </p>
 
-</div>
-        
-    }
+}
+@foreach (PRODUCTO prod in Model)
+{
+
+    <div id="Producto">
+        @{
+            var base64 = Convert.ToBase64String(prod.PRO_IMAGEN);
+            var imgSrc = String.Format("data:image/jpg;base64,{0}", base64);
+        }
+        <img style="width:250px;height:250px" src="@imgSrc" />
+        <div id="nombre">@prod.PRO_NOMBRE</div>
+        <div id="precio"><h2>$ @prod.PRO_PRECIO </h2></div>
+        @if (ViewBag.Carrito != null && ViewBag.Carrito.Contains(prod.PRO_ID))
+        {
+            <div><img style="width:20px;height:20px" src="https://image.flaticon.com/icons/png/512/107/107831.png" /><span> Añadido al carrito</span></div> }
+        else
+        {
+            <div>@Html.ActionLink("Añadir al carrito", "ListaProductos", "PRODUCTOes", new { id = prod.PRO_ID }, new { @class = "btn btn-primary" })</div><br />
+            <div>@Html.ActionLink("Ver Detalles", "Details", "PRODUCTOes", new { id = prod.PRO_ID }, new { @class = "btn btn-primary" })</div>
+        }
+
+    </div>
+    <br />
+    Page @(Model.PageCount <Model.PageNumber?0: Model.PageNumber) of @Model.PageCount
+<br />
+Total Item Count @Model.TotalItemCount
+@Html.PagedListPager(Model, page => Url.Action("ListaProductos", "PRODUCTOes", new { page, pageSize = ViewBag.PageSize }))
+}
 <br />
 

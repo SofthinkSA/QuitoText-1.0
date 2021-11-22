@@ -13,28 +13,27 @@ namespace QuitoText_1._0.Datos
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
 
     public partial class PRODUCTO
     {
-        //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public PRODUCTO()
         {
             this.USUARIO = new HashSet<USUARIO>();
         }
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+
         public int PRO_ID { get; set; }
-        [Display(Name = "Categoria: ")]
+        [Display(Name ="Categoria")]
         public int CATE_ID { get; set; }
-        [Display(Name = "Nombre: ")]
+        [Display(Name = "Nombre")]
         public string PRO_NOMBRE { get; set; }
-        [Display(Name = "Descripción: ")]
+        [Display(Name = "Descripcióm")]
         public string PRO_DESCRIPCION { get; set; }
-        [Display(Name = "Precio: ")]
+        [Display(Name = "Precio")]
         public decimal PRO_PRECIO { get; set; }
-        [Display(Name = "Stock: ")]
+        [Display(Name = "Stok")]
         public int PRO_STOCK { get; set; }
-        [Display(Name = "Imagen: ")]
+        [Display(Name = "Imagen")]
         public byte[] PRO_IMAGEN { get; set; }
         public byte[] PRO_IMAGEN2 { get; set; }
         public byte[] PRO_IMAGEN3 { get; set; }

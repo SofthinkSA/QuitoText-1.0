@@ -89,6 +89,7 @@ namespace QuitoText_1._0.Controllers
                     ModelState.AddModelError("", "Intento de inicio de sesión no válido.");
                     return View(model);
             }
+            
         }
 
         //
@@ -163,7 +164,7 @@ namespace QuitoText_1._0.Controllers
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirmar cuenta", "Para confirmar la cuenta, haga clic <a href=\"" + callbackUrl + "\">aquí</a>");
 
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("ListaProductos", "PRODUCTOes");
                 }
                 AddErrors(result);
             }
