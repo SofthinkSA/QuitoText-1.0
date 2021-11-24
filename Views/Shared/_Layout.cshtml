@@ -26,9 +26,17 @@
     .navbar-inverse .navbar-nav > li > a {
             color: #000000;
     }
-        .navbar-inverse .navbar-brand {
+    .navbar-inverse .navbar-brand {
             color: #000000;
-        }
+    }
+
+    .busqueda {
+       
+    }
+    .panel-default {
+        margin-top: 10px;
+    }
+
 </style>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -51,15 +59,53 @@
 
             </div>
             <div class="navbar-collapse collapse">
-
+           
                 <ul class="nav navbar-nav">
+                    @if (User.Identity.IsAuthenticated == false)
+                    {
+                        <li>@Html.ActionLink("Acerca de", "About", "Home")</li>
+                        <li>@Html.ActionLink("Contacto", "Contact", "Home")</li>
 
-                    <li>@Html.ActionLink("Acerca de", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contacto", "Contact", "Home")</li>
-                    <li>@Html.ActionLink("Productos", "Create", "PRODUCTOes")</li>
-                    <li>@Html.ActionLink("Categorias", "Create", "CATEGORIAs")</li>
+
+                    }
+                    else if (User.Identity.IsAuthenticated !=null && User.IsInRole("Administrador"))
+                    {
+                        <li>@Html.ActionLink("Acerca de", "About", "Home")</li>
+                        <li>@Html.ActionLink("Contacto", "Contact", "Home")</li>
+                        <li>@Html.ActionLink("Productos", "Index", "PRODUCTOes")</li>
+                        <li>@Html.ActionLink("Categorias", "Index", "CATEGORIAs")</li>
+                        <li>@Html.ActionLink("Ventas", "index", "COMPRACARRITOes")</li>
+                    }
+                    else
+                    {
+                        <li>@Html.ActionLink("Acerca de", "About", "Home")</li>
+                        <li>@Html.ActionLink("Contacto", "Contact", "Home")</li>
+                    }
 
 
+
+                    @*<li>
+            <div class="panel panel-default">
+                <div class="busqueda">
+                    <div class="form-inline">
+                        @Html.TextBox("Cadena", "", new { @class = "form-control" })
+                        <button type="submit" class="btn btn-default">Buscar</button>
+                    </div>
+                </div>
+
+
+
+            </div>
+
+
+        </li>*@
+
+                    <li>
+                        <a href="@Url.Action("ProductosCarrito", "PRODUCTOes")" title="List View" class="links">
+                            <img alt="List View" style="max-width: 40px; max-height: 40px; margin-top:-8px;" src="@Url.Content("~/Images/carrito-White.png")">
+
+                        </a>
+                    </li>
 
 
                 </ul>

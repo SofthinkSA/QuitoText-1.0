@@ -4,10 +4,11 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Listado de Categorias</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @*@Html.ActionLink("Create New", "Create")*@
+    <a href="/CATEGORIAs/Create" class="btn btn-success">Crear nuevo Producto</a>
 </p>
 <table class="table">
     <tr>
@@ -24,9 +25,12 @@
             @Html.DisplayFor(modelItem => item.CATE_NOMBRE)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.CATE_ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.CATE_ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.CATE_ID })
+           @* @Html.ActionLink("Edit", "Edit", new { id = item.CATE_ID }) |
+            @Html.ActionLink("Details", "Details", new { id = item.CATE_ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.CATE_ID })*@
+            <a href="/CATEGORIAs/Edit/@item.CATE_ID" class="btn btn-primary btn-sm"><i class="glyphicon glyphicon-pencil"></i></a>|
+            <a href="/CATEGORIAs/Details/@item.CATE_ID" class="btn btn-success btn-sm"><i class="glyphicon glyphicon-tasks"></i></a>|
+            <a href="/CATEGORIAs/Delete/@item.CATE_ID" class="btn btn-danger btn-sm"><i class="glyphicon glyphicon-trash"></i></a>
         </td>
     </tr>
 }

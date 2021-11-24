@@ -1,0 +1,73 @@
+﻿@model IEnumerable<QuitoText_1._0.Datos.COMPRACARRITO>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Lista de Pedidos</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaCompra)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AspNetUsers.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AspNetUsers.PhoneNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PRODUCTO.PRO_NOMBRE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ESTADOS.Nombre_state)
+        </th>
+
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.FechaCompra)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.AspNetUsers.Email)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.AspNetUsers.PhoneNumber)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.PRODUCTO.PRO_NOMBRE)
+    </td>
+    <td>
+        @if (item.State_Compra == 1)
+        {
+            <div style="background-color:Highlight">@Html.DisplayFor(modelItem => item.ESTADOS.Nombre_state)</div>
+
+        }
+        else if (item.State_Compra == 2)
+        {
+            <div style="background-color:#ff6a00">@Html.DisplayFor(modelItem => item.ESTADOS.Nombre_state)</div>
+        }
+        else
+        {
+            <div style="background-color:yellowgreen">@Html.DisplayFor(modelItem => item.ESTADOS.Nombre_state)</div>
+        }
+
+
+    </td>
+
+    <td>
+        @*@Html.ActionLink("Edit", "Edit", new { id = item.Compra_ID }) |
+            @Html.ActionLink("Details", "Details", new { id = item.Compra_ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.Compra_ID })*@
+
+        <a href="/COMPRACARRITOes/Edit/@item.Compra_ID" class="btn btn-success"><i class="glyphicon glyphicon-pencil"></i></a>
+    </td>
+</tr>
+}
+
+</table>

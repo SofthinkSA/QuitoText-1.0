@@ -4,13 +4,24 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="d6e77f03b73a407ba8e328f3de3bbdc1" Name="Diagram1">
+      <Diagram DiagramId="d6e77f03b73a407ba8e328f3de3bbdc1" Name="Diagram1" ZoomLevel="82">
         <EntityTypeShape EntityType="QuitoTexModel.CATEGORIA" Width="1.5" PointX="0.75" PointY="2" IsExpanded="true" />
         <EntityTypeShape EntityType="QuitoTexModel.PRODUCTO" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="QuitoTexModel.USUARIO" Width="1.5" PointX="8.625" PointY="1.375" IsExpanded="true" />
-        <AssociationConnector Association="QuitoTexModel.FK_PRODUCTO_PRODUCTO__CATEGORI" ManuallyRouted="false" />
-        <AssociationConnector Association="QuitoTexModel.COMPRA" ManuallyRouted="false" />
+        <AssociationConnector Association="QuitoTexModel.FK_PRODUCTO_PRODUCTO__CATEGORI" ManuallyRouted="false" />       
         <EntityTypeShape EntityType="QuitoTexModel.sysdiagrams" Width="1.5" PointX="5.875" PointY="0.875" />
+        <EntityTypeShape EntityType="QuitoTexModel.C__MigrationHistory" Width="1.5" PointX="7.75" PointY="5.75" />
+        <EntityTypeShape EntityType="QuitoTexModel.AspNetRoles" Width="1.5" PointX="0.75" PointY="7.5" />
+        <EntityTypeShape EntityType="QuitoTexModel.AspNetUserClaims" Width="1.5" PointX="1.125" PointY="5.125" />
+        <EntityTypeShape EntityType="QuitoTexModel.AspNetUserLogins" Width="1.5" PointX="5.25" PointY="8.75" />
+        <EntityTypeShape EntityType="QuitoTexModel.AspNetUsers" Width="1.5" PointX="3" PointY="6.375" />
+        <AssociationConnector Association="QuitoTexModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="QuitoTexModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="QuitoTexModel.AspNetUserRoles" />
+        <EntityTypeShape EntityType="QuitoTexModel.COMPRACARRITO" Width="1.5" PointX="10.25" PointY="5.75" />
+        <AssociationConnector Association="QuitoTexModel.FK_COMPRACARRITO_AspNetUsers" />
+        <AssociationConnector Association="QuitoTexModel.FK_COMPRACARRITO_PRODUCTO" />
+        <EntityTypeShape EntityType="QuitoTexModel.ESTADOS" Width="1.5" PointX="8.375" PointY="0.875" />
+        <AssociationConnector Association="QuitoTexModel.FK_COMPRACARRITO_ESTADOS" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -22,8 +22,9 @@
 {
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
     {
-    @Html.AntiForgeryToken()
 
+    @Html.AntiForgeryToken()
+        Session["UserId"] = User.Identity.GetUserId();
     <ul class="nav navbar-nav navbar-right">
         <li>
             @Html.ActionLink("Hola " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
@@ -36,11 +37,7 @@ else
 {
 <ul class="nav navbar-nav navbar-right">
     
-    <li><a href="@Url.Action("ProductosCarrito", "PRODUCTOes")" title="List View" class="links">
-        <img alt="List View" style="max-width: 40px; max-height: 40px; margin-top:-8px;" src="@Url.Content("~/Images/carrito-White.png")">
-        
-        </a>
-    </li>
+    
 
     <li>@Html.ActionLink("Registrarse", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
     <li>@Html.ActionLink("Iniciar sesión", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>

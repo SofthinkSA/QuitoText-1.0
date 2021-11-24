@@ -177,9 +177,22 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CATEGORIAsController.cs" />
+    <Compile Include="Controllers\COMPRACARRITOesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PRODUCTOesController.cs" />
+    <Compile Include="Datos\AspNetRoles.cs">
+      <DependentUpon>BaseQuitotext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Datos\AspNetUserClaims.cs">
+      <DependentUpon>BaseQuitotext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Datos\AspNetUserLogins.cs">
+      <DependentUpon>BaseQuitotext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Datos\AspNetUsers.cs">
+      <DependentUpon>BaseQuitotext.tt</DependentUpon>
+    </Compile>
     <Compile Include="Datos\BaseQuitotext.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -198,14 +211,26 @@
     <Compile Include="Datos\CATEGORIA.cs">
       <DependentUpon>BaseQuitotext.tt</DependentUpon>
     </Compile>
+    <Compile Include="Datos\COMPRACARRITO.cs">
+      <DependentUpon>BaseQuitotext.tt</DependentUpon>
+    </Compile>
     <Compile Include="Datos\ContextoProducto.cs" />
+    <Compile Include="Datos\C__MigrationHistory.cs">
+      <DependentUpon>BaseQuitotext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Datos\ESTADOS.cs">
+      <DependentUpon>BaseQuitotext.tt</DependentUpon>
+    </Compile>
     <Compile Include="Datos\PRODUCTO.cs">
       <DependentUpon>BaseQuitotext.tt</DependentUpon>
     </Compile>
-    <Compile Include="Datos\sysdiagrams.cs">
+    <Compile Include="Datos\sp_helpdiagramdefinition_Result.cs">
       <DependentUpon>BaseQuitotext.tt</DependentUpon>
     </Compile>
-    <Compile Include="Datos\USUARIO.cs">
+    <Compile Include="Datos\sp_helpdiagrams_Result.cs">
+      <DependentUpon>BaseQuitotext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Datos\sysdiagrams.cs">
       <DependentUpon>BaseQuitotext.tt</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
@@ -248,6 +273,7 @@
     <Content Include="Images\QUITO TEXT-04-1.png" />
     <Content Include="Images\QUITO TEXT-04.png" />
     <Content Include="Images\QUITO TEXT-05.png" />
+    <Content Include="Images\textura-del-fondo-de-los-colores-en-pastel-la-tela-seda-124150342.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <EntityDeploy Include="Datos\BaseQuitotext.edmx">
@@ -319,6 +345,11 @@
     <Content Include="Views\Home\Productos.cshtml" />
     <Content Include="Views\Home\ListaProductos.cshtml" />
     <Content Include="Views\PRODUCTOes\ProductosCarrito.cshtml" />
+    <Content Include="Views\COMPRACARRITOes\Create.cshtml" />
+    <Content Include="Views\COMPRACARRITOes\Delete.cshtml" />
+    <Content Include="Views\COMPRACARRITOes\Details.cshtml" />
+    <Content Include="Views\COMPRACARRITOes\Edit.cshtml" />
+    <Content Include="Views\COMPRACARRITOes\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -4,12 +4,23 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<style type="text/css">
+    .dl-horizontal {
+        font-size: 20px;
+    }
+</style>
 
 <div>
-    <h4>PRODUCTO</h4>
+    <h2>Detalles del producto</h2>
     <hr />
     <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CATEGORIA.CATE_NOMBRE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CATEGORIA.CATE_NOMBRE)
+        </dd>
         <dt>
             @Html.DisplayNameFor(model => model.PRO_NOMBRE)
         </dt>
@@ -35,35 +46,14 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.PRO_STOCK)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PRO_STOCK)
-        </dd>
-
-        <dt>
             @Html.DisplayNameFor(model => model.PRO_IMAGEN)
         </dt>
 
         <dd>
             @*@Html.DisplayFor(model => model.PRO_IMAGEN)*@
-            <img width="100" src="@Url.Action("getImage","PRODUCTOes", new { id=Model.PRO_ID})" />
+            <img width="350" src="@Url.Action("getImage","PRODUCTOes", new { id=Model.PRO_ID})" />
 
-        </dd>
-        
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CATEGORIA.CATE_NOMBRE)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CATEGORIA.CATE_NOMBRE)
         </dd>
 
     </dl>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.PRO_ID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

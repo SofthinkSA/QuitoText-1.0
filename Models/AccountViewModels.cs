@@ -80,6 +80,10 @@ namespace QuitoText_1._0.Models
         [Compare("Password", ErrorMessage = "La contraseña y la contraseña de confirmación no coinciden.")]
         public string ConfirmPassword { get; set; }
 
+        [Required]        
+        [Display(Name = "Telefono")]
+        public string PhoneNumber { get; set; }
+
 
     }
 

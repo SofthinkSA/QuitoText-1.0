@@ -1,4 +1,4 @@
-﻿$(".btn-ver-categoria").click(function () {
+﻿/*$(".btn-ver-categoria").click(function () {
     jQuery.ajax({
         url: '@Url.Action("ListarCategoria", "Tienda")',
         type: "GET",
@@ -95,4 +95,4 @@ beforeSend: function () {
     $("#catalogo-productos").LoadingOverlay("show");
 },
             });
-        }
+        }*/

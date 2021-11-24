@@ -1,1 +1,105 @@
-﻿
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>@ViewBag.Title - TEXTIWORLD</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<style type="text/css">
+    .btnCarrito {
+        background: url(/Images/carrito-White.png) no-repeat top left;
+        display: block;
+        width: 40px;
+        height: 40px;
+        text-indent: -9999px; /* hides the link text */
+    }
+
+    .navbar-inverse {
+        background-color: #36c2ef;
+    }
+
+        .navbar-inverse .navbar-nav > li > a {
+            color: #000000;
+        }
+
+        .navbar-inverse .navbar-brand {
+            color: #000000;
+        }
+
+    .busqueda {
+    }
+
+    .panel-default {
+        margin-top: 10px;
+    }
+</style>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand">
+
+                    <img alt="Brand" style="max-width: 40px; max-height: 40px; margin-top: -10px;" src="~/Images/Only-Logo.png">
+
+                </a>
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+
+                @Html.ActionLink("TEXTIWORLD", "ListaProductos", "PRODUCTOes", new { area = "" }, new { @class = "navbar-brand" })
+
+            </div>
+            <div class="navbar-collapse collapse">
+                
+                <ul class="nav navbar-nav">
+
+                    <li>@Html.ActionLink("Acerca de", "About", "Home")</li>
+                    <li>@Html.ActionLink("Contacto", "Contact", "Home")</li>
+                    
+
+                    <li>
+                        <a href="@Url.Action("ProductosCarrito", "PRODUCTOes")" title="List View" class="links">
+                            <img alt="List View" style="max-width: 40px; max-height: 40px; margin-top:-8px;" src="@Url.Content("~/Images/carrito-White.png")">
+
+                        </a>
+                    </li>
+
+
+                </ul>
+                @Html.Partial("_LoginPartial")
+
+            </div>
+        </div>
+
+    </div>
+
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+
+    </div>
+    <div class="container">
+        <footer>
+            <p>&copy; @DateTime.Now.Year - SOFTHINK</p>
+        </footer>
+    </div>
+
+
+
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
+

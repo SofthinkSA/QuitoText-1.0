@@ -11,21 +11,19 @@ namespace QuitoText_1._0.Datos
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
-    public partial class CATEGORIA
+    
+    public partial class AspNetRoles
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public CATEGORIA()
+        public AspNetRoles()
         {
-            this.PRODUCTO = new HashSet<PRODUCTO>();
+            this.AspNetUsers = new HashSet<AspNetUsers>();
         }
     
-        public int CATE_ID { get; set; }
-        [Display(Name = "Categoria")]
-        public string CATE_NOMBRE { get; set; }
+        public string Id { get; set; }
+        public string Name { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PRODUCTO> PRODUCTO { get; set; }
+        public virtual ICollection<AspNetUsers> AspNetUsers { get; set; }
     }
 }

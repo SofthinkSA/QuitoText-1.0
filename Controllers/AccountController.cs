@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using QuitoText_1._0.Models;
@@ -57,8 +58,9 @@ namespace QuitoText_1._0.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
+            
             ViewBag.ReturnUrl = returnUrl;
-            return View();
+            return View();            
         }
 
         //
@@ -71,6 +73,7 @@ namespace QuitoText_1._0.Controllers
             if (!ModelState.IsValid)
             {
                 return View(model);
+                //return RedirectToAction("ListaProductos", "PRODUCTOes");
             }
 
             // No cuenta los errores de inicio de sesión para el bloqueo de la cuenta
@@ -79,7 +82,9 @@ namespace QuitoText_1._0.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
+                    
+                   // return RedirectToLocal(returnUrl);
+                    return RedirectToAction("ListaProductos", "PRODUCTOes");
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
@@ -152,12 +157,13 @@ namespace QuitoText_1._0.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, PhoneNumber=model.PhoneNumber };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     
+
                     // Para obtener más información sobre cómo habilitar la confirmación de cuentas y el restablecimiento de contraseña, visite https://go.microsoft.com/fwlink/?LinkID=320771
                     // Enviar correo electrónico con este vínculo
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
@@ -393,7 +399,7 @@ namespace QuitoText_1._0.Controllers
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("ListaProductos", "PRODUCTOes");
         }
 
         //

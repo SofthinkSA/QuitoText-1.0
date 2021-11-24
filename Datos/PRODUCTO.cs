@@ -11,7 +11,6 @@ namespace QuitoText_1._0.Datos
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
 
     public partial class PRODUCTO
@@ -19,19 +18,20 @@ namespace QuitoText_1._0.Datos
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public PRODUCTO()
         {
-            this.USUARIO = new HashSet<USUARIO>();
+            this.COMPRACARRITO = new HashSet<COMPRACARRITO>();
         }
-
+    
         public int PRO_ID { get; set; }
-        [Display(Name ="Categoria")]
+
+        [Display (Name ="Categoria")]
         public int CATE_ID { get; set; }
-        [Display(Name = "Nombre")]
+        [Display(Name = "Producto")]
         public string PRO_NOMBRE { get; set; }
-        [Display(Name = "Descripcióm")]
+        [Display(Name = "Descripción")]
         public string PRO_DESCRIPCION { get; set; }
         [Display(Name = "Precio")]
         public decimal PRO_PRECIO { get; set; }
-        [Display(Name = "Stok")]
+        [Display(Name = "Stock")]
         public int PRO_STOCK { get; set; }
         [Display(Name = "Imagen")]
         public byte[] PRO_IMAGEN { get; set; }
@@ -42,6 +42,6 @@ namespace QuitoText_1._0.Datos
     
         public virtual CATEGORIA CATEGORIA { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<USUARIO> USUARIO { get; set; }
+        public virtual ICollection<COMPRACARRITO> COMPRACARRITO { get; set; }
     }
 }
